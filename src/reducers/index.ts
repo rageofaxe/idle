@@ -23,8 +23,13 @@ const reducer = (state: Store = initialState, action) => {
     case "INC":
       return { ...state, money: state.money + action.payload };
     case "BUY":
-      if (state.money > 50) {
-        return { ...state, money: state.money - 50 };
+      const squares = state.squares;
+      if (state.money - 50 >= 0) {
+        const idx = R.findIndex(x => x.id === action.payload, squares);
+        return {
+          squares: R.over(R.lensPath([idx, "value"]), x => x + 1, squares),
+          money: state.money - 50
+        };
       }
       return state;
 

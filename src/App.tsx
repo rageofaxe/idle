@@ -8,7 +8,7 @@ const Square = (props: Square) => {
   const dispatch = useDispatch();
 
   const buy = () => {
-    dispatch({ type: "INC", payload: { id: props.id } });
+    dispatch({ type: "BUY", payload: props.id });
   };
 
   useInterval(() => {
@@ -34,7 +34,12 @@ export default function App() {
       </div>
       <div className="grid">
         {squares.map((square: Square) => (
-          <Square color={square.color} value={square.value} id={square.id} />
+          <Square
+            key={square.id}
+            color={square.color}
+            value={square.value}
+            id={square.id}
+          />
         ))}
       </div>
     </div>
