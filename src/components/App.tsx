@@ -1,26 +1,8 @@
 import * as React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-import useInterval from "./hooks/useInterval";
-import "./styles.css";
-
-const Square = (props: Square) => {
-  const dispatch = useDispatch();
-
-  const buy = () => {
-    dispatch({ type: "BUY", payload: props.id });
-  };
-
-  useInterval(() => {
-    dispatch({ type: "INC", payload: props.value });
-  }, 1000);
-
-  return (
-    <div className="square" onClick={buy} style={{ background: props.color }}>
-      {props.color}
-    </div>
-  );
-};
+import Square from "./Square";
+import "../styles.css";
 
 export default function App() {
   const money = useSelector(x => x.money);

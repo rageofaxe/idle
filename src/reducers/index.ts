@@ -1,5 +1,7 @@
 import * as R from "ramda";
 
+import { BUY, INC } from "../constants";
+
 const square: Square = {
   speed: 1000,
   value: 0,
@@ -18,14 +20,14 @@ const initialState: Store = {
   ]
 };
 
-const reducer = (state: Store = initialState, action) => {
+const reducer = (state: Store = initialState, action: GameActions) => {
   switch (action.type) {
-    case "INC":
+    case INC:
       return { ...state, money: state.money + action.payload };
-    case "BUY":
+    case BUY:
       const squares = state.squares;
+      const idx = R.findIndex(x => x.id === action.payload, squares);
       if (state.money - 50 >= 0) {
-        const idx = R.findIndex(x => x.id === action.payload, squares);
         return {
           squares: R.over(R.lensPath([idx, "value"]), x => x + 1, squares),
           money: state.money - 50

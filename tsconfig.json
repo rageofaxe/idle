@@ -1,13 +1,46 @@
 {
-    "include": [
-        "./src/*"
-    ],
+    "awesomeTypescriptLoaderOptions": {
+        "useTranspileModule": true,
+        "transpileOnly": true,
+        "errorsAsWarnings": true
+    },
     "compilerOptions": {
-        "strict": true,
+        "target": "es5",
+        "declaration": false,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": false,
+        "removeComments": false,
+        "preserveConstEnums": false,
+        "module": "es6",
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "noErrorTruncation": true,
+        "jsx": "react",
+        "importHelpers": true,
+        "noEmitHelpers": true,
+        "alwaysStrict": true,
+        "noLib": false,
         "lib": [
             "dom",
-            "es2015"
+            "es6",
+            "es2016.array.include"
         ],
-        "jsx": "react"
-    }
+        "skipLibCheck": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": false,
+        "strictPropertyInitialization": true,
+        "forceConsistentCasingInFileNames": true,
+        "allowJs": false,
+        "checkJs": false,
+        "baseUrl": "."
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "tests/**/*.ts",
+        "tests/**/*.tsx"
+    ]
 }
