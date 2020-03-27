@@ -17,7 +17,7 @@ export default (props: Square) => {
 
   return (
     <div className="square" onClick={buy} style={{ background: props.color }}>
-      {props.color}
+      {props.value}
     </div>
   );
 };

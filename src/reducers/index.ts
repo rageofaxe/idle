@@ -3,6 +3,7 @@ import * as R from "ramda";
 import { BUY, INC } from "../constants";
 
 const square: Square = {
+  cost: 50,
   speed: 1000,
   value: 0,
   color: "gray"
@@ -28,10 +29,14 @@ const reducer = (state: Store = initialState, action: GameActions) => {
       const squares = state.squares;
       const idx = R.findIndex(x => x.id === action.payload, squares);
       if (state.money - 50 >= 0) {
-        return {
-          squares: R.over(R.lensPath([idx, "value"]), x => x + 1, squares),
-          money: state.money - 50
+        const result = {
+          squares: R.pipe(
+            R.over(R.lensPath([idx, "value"]), x => x + 1),
+            R.over(R.lensPath([idx, "money"]), x => x + 50)
+          )(squares),
+          money: state.money - (50 + squares[idx].value)
         };
+        return result;
       }
       return state;
 
